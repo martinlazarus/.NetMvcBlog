@@ -1,0 +1,50 @@
+﻿@model Blog40.ViewModels.AuthorDetailsViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Authors</h2>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Display Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Edit/Delete</th>
+            <th>
+                @using (Html.BeginForm("UndeleteAll", "Edit"))
+                {
+                    <button type="submit" class="btn-success">Undelete All</button>
+                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                }
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var author in Model.Authors)
+        {
+            <tr scope="row">
+                <td>@author.DisplayName</td>
+                <td>@author.FirstName</td>
+                <td>@author.LastName</td>
+                <td>
+
+                    @using (Html.BeginForm("Edit", "Author", new { Id = @author.AuthorId }, FormMethod.Get))
+                    {
+                        <button type="submit" class="btn-success">Edit</button>
+                    }
+
+                    @using (Html.BeginForm("Delete", "Author", new { Id = @author.AuthorId }))
+                    {
+                        <button type="submit" class="btn-danger">Delete</button>
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                    }
+            </tr>
+        }
+
+    </tbody>
+</table>
