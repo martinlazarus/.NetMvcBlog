@@ -2,12 +2,11 @@
 using Blog40.Models;
 using Blog40.Repository;
 using Microsoft.Practices.Unity;
-using UnityMvc = Microsoft.Practices.Unity.Mvc;
-using UnityWebApi = Microsoft.Practices.Unity.WebApi;
 using System.Configuration;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Unity.Mvc3;
 
 namespace Blog40
 {
@@ -20,17 +19,8 @@ namespace Blog40
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            ConfigureWebApi(GlobalConfiguration.Configuration);
             ConfigureUnity();
-        }
-
-        private void ConfigureWebApi(HttpConfiguration config)
-        {
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            ConfigureAutoMapper();
         }
 
         private static void RegisterGlobalFilters(GlobalFilterCollection filters)
@@ -40,7 +30,6 @@ namespace Blog40
 
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("swagger");
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
@@ -67,11 +56,7 @@ namespace Blog40
             container.RegisterType<IRepository<Category>>(
                 new InjectionFactory(c => new CategoryRepository(DatabaseConnectionString))
             );
-            container.RegisterType<IMapper>(
-                new InjectionFactory(c => ConfigureAutoMapper())
-            );
-            GlobalConfiguration.Configuration.DependencyResolver = new UnityWebApi.UnityDependencyResolver(container);
-            DependencyResolver.SetResolver(new UnityMvc.UnityDependencyResolver(container));
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
 
         private string DatabaseConnectionString
@@ -86,13 +71,12 @@ namespace Blog40
             }
         }
 
-        private IMapper ConfigureAutoMapper()
+        private void ConfigureAutoMapper()
         {
-            MapperConfiguration configuration = new MapperConfiguration(config =>
+            Mapper.Initialize(config =>
             {
-                config.CreateMissingTypeMaps = true;
+
             });
-            return configuration.CreateMapper();
         }
     }
 }
