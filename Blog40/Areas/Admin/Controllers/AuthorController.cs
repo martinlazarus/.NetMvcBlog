@@ -10,19 +10,17 @@ namespace Blog40.Areas.Admin.Controllers
     public class AuthorController : Controller
     {
         private IRepository<Author> _authorRepository;
-        private IMapper _mapper;
 
-        public AuthorController(IRepository<Author> authorRepository, IMapper mapper)
+        public AuthorController(IRepository<Author> authorRepository)
         {
             _authorRepository = authorRepository;
-            _mapper = mapper;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
             IEnumerable<Author> authorList = _authorRepository.GetAll();
-            IEnumerable<AuthorViewModel> authors = _mapper.Map <IEnumerable<Author>, IEnumerable<AuthorViewModel>>(authorList);
+            IEnumerable<AuthorViewModel> authors = Mapper.Map<IEnumerable<Author>, IEnumerable<AuthorViewModel>>(authorList);
             AuthorListViewModel model = new AuthorListViewModel
             {
                 Authors = authors
@@ -34,7 +32,7 @@ namespace Blog40.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             Author author = _authorRepository.Get(id);
-            AuthorViewModel viewModel = _mapper.Map<Author, AuthorViewModel>(author);
+            AuthorViewModel viewModel = Mapper.Map<Author, AuthorViewModel>(author);
             return View(viewModel);
         }
 
@@ -42,7 +40,7 @@ namespace Blog40.Areas.Admin.Controllers
         public ActionResult Edit(AuthorViewModel viewModel)
         {
             Author author = _authorRepository.Get(viewModel.AuthorId);
-            _mapper.Map<AuthorViewModel, Author>(viewModel, author);
+            Mapper.Map<AuthorViewModel, Author>(viewModel, author);
             _authorRepository.Update(author);
             return RedirectToAction("Index");
         }
