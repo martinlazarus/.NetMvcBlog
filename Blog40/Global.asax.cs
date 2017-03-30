@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Blog40.Models;
 using Blog40.Repository;
+using Blog40.ViewModels;
 using Microsoft.Practices.Unity;
+using System.Collections.Generic;
 using System.Configuration;
-using System.Web.Http;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Unity.Mvc3;
@@ -75,7 +77,14 @@ namespace Blog40
         {
             Mapper.Initialize(config =>
             {
-
+                config.CreateMap<Post, PostViewModel>();
+                config.CreateMap<Post, PostViewModel>().ReverseMap();
+                config.CreateMap<Post, PostEditViewModel>();
+                config.CreateMap<Post, PostEditViewModel>().ReverseMap();
+                config.CreateMap<Author, AuthorViewModel>();
+                config.CreateMap<Author, AuthorViewModel>().ReverseMap();
+                config.CreateMap<Category, CategoryViewModel>();
+                config.CreateMap<Category, CategoryViewModel>().ReverseMap();
             });
         }
     }
