@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using Blog40.Models;
 using Blog40.Repository;
+using Blog40.Utilities;
 using Blog40.ViewModels;
 using Microsoft.Practices.Unity;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Unity.Mvc3;
 
 namespace Blog40
 {
@@ -20,6 +19,7 @@ namespace Blog40
         {
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
+            ConfigureWebApi(GlobalConfiguration.Configuration);
             RegisterRoutes(RouteTable.Routes);
             ConfigureUnity();
             ConfigureAutoMapper();
@@ -28,6 +28,15 @@ namespace Blog40
         private static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+        }
+
+        private void ConfigureWebApi(HttpConfiguration config)
+        {
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -58,7 +67,8 @@ namespace Blog40
             container.RegisterType<IRepository<Category>>(
                 new InjectionFactory(c => new CategoryRepository(DatabaseConnectionString))
             );
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            GlobalConfiguration.Configuration.DependencyResolver = new WebApiUnityDependencyResolver(container);
+            DependencyResolver.SetResolver(new MvcUnityDependencyResolver(container));
         }
 
         private string DatabaseConnectionString
