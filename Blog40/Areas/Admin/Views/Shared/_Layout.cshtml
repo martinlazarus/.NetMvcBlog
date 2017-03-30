@@ -1,5 +1,5 @@
-﻿@{
-    ViewBag.SiteTitle = "Blog";
+﻿@{ 
+    ViewBag.SiteTitle = "Blog Admin";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     </head>
     <body>
-        <nav class="navbar navbar-light bg-faded navbar-toggleable-md mb-4">
+        <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md mb-4">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,11 +22,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("Overview", "Index", "Admin", new { area = "Admin" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Posts", "Index", "Post", new { area = "Admin" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Authors", "Index", "Author", new { area = "Admin" }, new { @class = "nav-link" })
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    @Html.ActionLink("Admin", "Index", "Admin", new { area = "Admin" }, new { })
+                    @Html.ActionLink("Back to Blog", "Index", "Home", new { area = "" }, new { })
                 </span>
             </div>
         </nav>
