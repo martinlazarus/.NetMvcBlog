@@ -1,17 +1,12 @@
-﻿using System;
+﻿using Blog40.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Blog40.Models;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
 
 namespace Blog40.ViewModels
 {
-    public class PostEditViewModel
+    public class PostEditViewModel : PostViewModel
     {
-        public Post Post { get; set; }
-        public List<Category> Categories { get; set; }
-        public List<Author> Authors { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+
+        public IEnumerable<Author> Authors { get; set; }
     }
 }

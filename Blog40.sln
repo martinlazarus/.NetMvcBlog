@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Web
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog40", "Blog40\Blog40.csproj", "{1DBA6B6B-0410-4CD4-951C-48F5D0EAD086}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog40.Models", "Blog40.Models\Blog40.Models.csproj", "{377F6B35-7ED8-4DFB-935D-E2A66D4C4433}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog40.Repository", "Blog40.Repository\Blog40.Repository.csproj", "{5EB0DB66-7504-45BC-8CC3-DA632A8FAD38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +15,24 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1DBA6B6B-0410-4CD4-951C-48F5D0EAD086}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{1DBA6B6B-0410-4CD4-951C-48F5D0EAD086}.Debug|Any CPU.Build.0 = Release|Any CPU
-		{1DBA6B6B-0410-4CD4-951C-48F5D0EAD086}.Debug|Any CPU.Deploy.0 = Release|Any CPU
+		{1DBA6B6B-0410-4CD4-951C-48F5D0EAD086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DBA6B6B-0410-4CD4-951C-48F5D0EAD086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DBA6B6B-0410-4CD4-951C-48F5D0EAD086}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{1DBA6B6B-0410-4CD4-951C-48F5D0EAD086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DBA6B6B-0410-4CD4-951C-48F5D0EAD086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{377F6B35-7ED8-4DFB-935D-E2A66D4C4433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{377F6B35-7ED8-4DFB-935D-E2A66D4C4433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{377F6B35-7ED8-4DFB-935D-E2A66D4C4433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{377F6B35-7ED8-4DFB-935D-E2A66D4C4433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EB0DB66-7504-45BC-8CC3-DA632A8FAD38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EB0DB66-7504-45BC-8CC3-DA632A8FAD38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EB0DB66-7504-45BC-8CC3-DA632A8FAD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EB0DB66-7504-45BC-8CC3-DA632A8FAD38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.2.1.505.0\lib\NET35
 	EndGlobalSection
 EndGlobal
