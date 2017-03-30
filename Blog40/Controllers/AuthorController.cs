@@ -11,7 +11,7 @@ namespace Blog40.Controllers
 {
     public class AuthorController : Controller
     {
-        private AuthorRepository authorRepo = new AuthorRepository ();
+        private AuthorRepository authorRepo = new AuthorRepository();
 
         [HttpGet]
         public ActionResult All()
