@@ -13,19 +13,17 @@ namespace Blog40.Controllers
     public class HomeController : Controller
     {
         private IRepository<Post> _postRepository;
-        private IMapper _mapper;
 
-        public HomeController(IRepository<Post> postRepository, IMapper mapper)
+        public HomeController(IRepository<Post> postRepository)
         {
             _postRepository = postRepository;
-            _mapper = mapper;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
             IEnumerable<Post> postList = _postRepository.GetAll().Take(5);
-            IEnumerable<PostViewModel> posts = _mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(postList);
+            IEnumerable<PostViewModel> posts = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(postList);
             PostListViewModel viewModel = new PostListViewModel
             {
                 Posts = posts
@@ -43,7 +41,7 @@ namespace Blog40.Controllers
             else
             {
                 Post match = _postRepository.GetByString(slug);
-                PostViewModel viewModel = _mapper.Map<Post, PostViewModel>(match);
+                PostViewModel viewModel = Mapper.Map<Post, PostViewModel>(match);
                 if (match == null)
                 {
                     return HttpNotFound();
