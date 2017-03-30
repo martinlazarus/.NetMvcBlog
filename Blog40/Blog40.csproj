@@ -182,7 +182,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Unity.Mvc3.README.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
